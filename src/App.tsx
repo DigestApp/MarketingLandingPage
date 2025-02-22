@@ -23,9 +23,17 @@ function App() {
   ];
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveStep((current) => (current + 1) % steps.length);
-    }, 1000); // Reduced from 3000 to 2000ms
+    let interval: number;
+    interval = window.setInterval(() => {
+      setActiveStep((current) => {
+        if (current < steps.length - 1) {
+          return current + 1;
+        } else {
+          clearInterval(interval);
+          return current;
+        }
+      });
+    }, 1000);
     return () => clearInterval(interval);
   }, [steps.length]);
 
@@ -39,8 +47,27 @@ function App() {
             <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-400 via-silver-400 to-purple-400 text-transparent bg-clip-text">Digest</h1>
           </div>
           <h2 className="text-4xl font-bold text-white sm:text-5xl md:text-6xl mb-8">
-            Transform Information Overload<br />
-            <span className="bg-gradient-to-r from-indigo-400 via-silver-300 to-purple-400 text-transparent bg-clip-text">Into Focused Knowledge</span>
+            <span 
+              className="bg-gradient-to-r from-indigo-400 via-silver-300 to-purple-400 text-transparent bg-clip-text"
+              style={{
+                backgroundSize: '200% 100%',
+                backgroundPosition: '100% 0',
+                animation: 'shimmerWave 3s ease-in-out infinite'
+              }}
+            >
+              Transform Information Overload
+            </span>
+            <br />
+            <span 
+              className="bg-gradient-to-r from-purple-400 via-silver-300 to-indigo-400 text-transparent bg-clip-text"
+              style={{
+                backgroundSize: '200% 100%',
+                backgroundPosition: '100% 0',
+                animation: 'shimmerWave 3s ease-in-out infinite 0.5s'
+              }}
+            >
+              Into Focused Knowledge
+            </span>
           </h2>
           
           {/* Enhanced Value Proposition */}
@@ -51,22 +78,29 @@ function App() {
             </p>
             <div className="grid md:grid-cols-3 gap-4 max-w-3xl mx-auto mt-8">
               <div className="bg-slate-800/30 backdrop-blur-sm rounded-lg p-4 border border-silver-500/10">
-                <p className="text-2xl font-bold text-silver-300">85%</p>
-                <p className="text-sm text-slate-400">Time Saved</p>
+                <p className="text-3xl font-bold text-silver-300">85%</p>
+                <p className="text-l text-slate-400">Time Saved</p>
               </div>
               <div className="bg-slate-800/30 backdrop-blur-sm rounded-lg p-4 border border-silver-500/10">
-                <p className="text-2xl font-bold text-silver-300">3x</p>
-                <p className="text-sm text-slate-400">More Content Consumed</p>
+                <p className="text-3xl font-bold text-silver-300">3x</p>
+                <p className="text-l text-slate-400">More Content Consumed</p>
               </div>
               <div className="bg-slate-800/30 backdrop-blur-sm rounded-lg p-4 border border-silver-500/10">
-                <p className="text-2xl font-bold text-silver-300">100%</p>
-                <p className="text-sm text-slate-400">Key Insights Captured</p>
+                <p className="text-3xl font-bold text-silver-300">100%</p>
+                <p className="text-l text-slate-400">Key Insights Captured</p>
               </div>
             </div>
           </div>
 
           <div className="flex justify-center gap-4">
-            <button className="px-8 py-3 bg-gradient-to-r from-indigo-500 via-silver-500 to-purple-500 hover:from-indigo-600 hover:via-silver-600 hover:to-purple-600 text-white rounded-full font-semibold transition-all duration-300 flex items-center gap-2 shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40">
+            <button 
+              className="px-8 py-3 bg-gradient-to-r from-indigo-500 via-silver-500 to-purple-500 hover:from-indigo-600 hover:via-silver-600 hover:to-purple-600 text-white rounded-full font-semibold transition-all duration-300 flex items-center gap-2 shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40"
+              style={{
+                backgroundSize: '200% 100%',
+                backgroundPosition: '100% 0',
+                animation: 'shimmerWave 3s ease-in-out infinite'
+              }}
+            >
               Try Digest Free <ChevronRight className="h-5 w-5" />
             </button>
             <button className="px-8 py-3 border border-silver-400/30 text-silver-300 rounded-full font-semibold hover:border-silver-400/50 hover:text-silver-200 transition-all duration-300">
